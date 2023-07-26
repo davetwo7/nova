@@ -1,10 +1,12 @@
-import { db } from  '../../database/db.js'
+import db from  '../../database/db.js'
 
 export const getAllGenres = async () => {
   try {
-    const response = await db.query()
-  } catch (err) {
-
+    const response = await db.query("SELECT name FROM musicbrainz.genre")
+    return response;
+  } catch (error) {
+    console.log(error)
+    throw error;
   }
 }
 
@@ -16,7 +18,7 @@ export const getGenreById = () => {
 
 }
 
-export const getGenreRelations = () => {
+export const getRelatedGenres = () => {
 
 }
 
@@ -36,14 +38,16 @@ export const getGenreTracks = () => {
 
 }
 
-export const getTopGenres = (limit) => {
+export const getTopGenres = (limit: string) => {
 
 }
 
-export const getTopGenreArtists = (limit) => {
+export const getTopGenreArtists = (limit: string) => {
 
 }
 
-export const getTopGenreTracks = (limit) => {
+export const getTopGenreTracks = (limit: string) => {
 
 }
+
+console.log(getAllGenres());

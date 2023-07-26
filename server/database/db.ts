@@ -1,6 +1,6 @@
-// https://github.com/vitaly-t/pg-promise-demo/blob/master/TypeScript/db/index.ts
+// @ts-nocheck
+import pgPromise from 'pg-promise' ;
 
-const pgp = require('pg-promise')()
 
 const connection = {
   host: 'localhost',
@@ -8,8 +8,11 @@ const connection = {
   database: 'nova_db',
   user: 'postgres',
   password: '',
+  min: 2,
   max: 30
 }
+
+const pgp = pgPromise();
 
 const db = pgp(connection);
 
