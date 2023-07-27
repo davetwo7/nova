@@ -49,5 +49,3 @@ export const getTopGenreArtists = (limit: string) => {
 export const getTopGenreTracks = (limit: string) => {
 
 }
-
-console.log(getAllGenres());
