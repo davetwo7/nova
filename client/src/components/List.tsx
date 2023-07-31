@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GenreDropdown from "./GenreDropdown";
+import GenreList from "./GenreList";
 const List = () => {
   const genres = useLoaderData();
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,6 +30,7 @@ const List = () => {
   return (
     <div>
       <GenreDropdown/>
+      <GenreList/>
     </div>
   );
 };

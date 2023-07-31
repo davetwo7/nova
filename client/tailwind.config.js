@@ -20,6 +20,9 @@ export default {
         'satoshi-black': ['Satoshi-Black', 'sans-serif'],
         'satoshi-black-italic': ['Satoshi-BlackItalic', 'sans-serif'],
       },
+      textShadow: {
+        'md': '2px 2px 4px rgba(0, 0, 0, 0.5)',
+      }
     }
   },
   plugins: [],

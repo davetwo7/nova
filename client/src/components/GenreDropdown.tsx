@@ -28,13 +28,13 @@ const GenreDropdown = () => {
 
   return (
     <div>
-      <div className="border-b border-t border-stone-900/30 py-4 flex items-center gap-1">
-        <span className="text-lg font-satoshi-regular">Genres</span>
+      <div className="border-b border-t border-rose-50/20 text-rose-50 py-4 flex items-center gap-1">
+        <span className="text-xl font-satoshi-medium">Genres</span>
         <div
           onClick={() => setViewAllGenres(!viewAllGenres)}
-          className="group text-sm font-satoshi-regular text-stone-900/30"
+          className="group text-sm font-satoshi-regular text-rose-50/70"
         >
-          <span className="hover:text-stone-900/50 transition-transform duration-500 cursor-pointer">
+          <span className="hover:text-rose-50 transition-transform duration-500 cursor-pointer">
             {"\u2192 view all genres"}
           </span>
           {/* <span className="block h-0.5 bg-stone-900/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-150"/> */}
@@ -61,7 +61,7 @@ const GenreDropdown = () => {
                   {currentPage > 1 ? (
                     <button
                       onClick={handlePrevPage}
-                      className="h-full mr-5 hover:bg-stone-950/40 transition-colors duration-150 p-2 text-stone-950"
+                      className="grow mr-5 rounded-md hover:bg-rose-500/50 transition-colors duration-150 p-2"
                     >
                       {"\u2190"}
                     </button>
@@ -69,7 +69,7 @@ const GenreDropdown = () => {
                   <div className="flex flex-wrap gap-5 py-5 overflow-hidden">
                     {displayedGenres.map((genre, index) => (
                       <button
-                        className="relative group text-stone-950 font-satoshi-regular"
+                        className="relative group text-rose-50 font-satoshi-regular"
                         key={index}
                       >
                         <span className="mb-2">{genre.name}</span>
@@ -80,7 +80,7 @@ const GenreDropdown = () => {
                   {genres.length > currentPage * itemsPerPage ? (
                     <button
                       onClick={handleNextPage}
-                      className="p-2 text-stone-950 h-full ml-5 hover:bg-stone-950/40 transition-colors duration-150"
+                      className="p-2 text-rose-50 h-full ml-5 hover:bg-stone-950/40 transition-colors duration-150"
                     >
                       {"\u2192"}
                     </button>
