@@ -1,8 +1,19 @@
-// @ts-nocheck
-import pgPromise from 'pg-promise' ;
+// import pgPromise from 'pg-promise' ;
+import pgPromise, { IMain, IDatabase } from 'pg-promise';
+
+interface IConnectionParameters {
+  host: string;
+  port: number;
+  database: string;
+  user: string;
+  password: string;
+  min: number;
+  max: number;
+}
 
 
-const connection = {
+
+const connection: IConnectionParameters = {
   host: 'localhost',
   port: 5432,
   database: 'nova_db',
@@ -12,9 +23,9 @@ const connection = {
   max: 30
 }
 
-const pgp = pgPromise();
+const pgp: IMain = pgPromise();
 
-const db = pgp(connection);
+const db: IDatabase<any> = pgp(connection);
 
 db.connect()
 .then((success) => {

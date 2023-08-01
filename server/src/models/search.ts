@@ -1,43 +1,46 @@
 import db from  '../../database/db.js'
 
 const searchArtists = async (searchValue: string) => {
-  const artistQuery = `SELECT artist_id, ref_count, artist_name, tag_name FROM (
-    SELECT
-      musicbrainz.artist_tag.artist AS artist_id,
-      musicbrainz.artist_tag.tag AS tag_id,
-      musicbrainz.tag.ref_count AS ref_count,
-      musicbrainz.artist.name AS artist_name,
-      musicbrainz.tag.name AS tag_name,
-      ROW_NUMBER() OVER (
-        PARTITION BY musicbrainz.artist_tag.artist
-        ORDER BY ref_count DESC
-      ) row_number
-    FROM musicbrainz.artist_tag
-    JOIN musicbrainz.tag ON musicbrainz.tag.id = musicbrainz.artist_tag.tag
-    JOIN musicbrainz.artist ON musicbrainz.artist.id = musicbrainz.artist_tag.artist
-    WHERE musicbrainz.artist.name ILIKE $1
-  ) t
-  WHERE row_number <= 5
-  ORDER BY
-    CASE
-      WHEN artist_name = $2 THEN 0
-      ELSE 1
-    END, ref_count DESC`
+  const artistQuery = `
+    SELECT * FROM (
+      SELECT
+        musicbrainz.artist_tag.artist AS artist_id,
+        musicbrainz.artist_tag.tag AS tag_id,
+        musicbrainz.tag.ref_count,
+        musicbrainz.artist.name AS artist_name,
+        musicbrainz.tag.name AS tag_name,
+        ROW_NUMBER() OVER (
+          PARTITION BY musicbrainz.artist_tag.artist
+          ORDER BY musicbrainz.tag.ref_count DESC
+        ) row_number
+      FROM musicbrainz.artist_tag
+      JOIN musicbrainz.tag ON musicbrainz.tag.id = musicbrainz.artist_tag.tag
+      JOIN musicbrainz.artist ON musicbrainz.artist.id = musicbrainz.artist_tag.artist
+      WHERE LOWER(musicbrainz.artist.name) ILIKE LOWER($1)
+    ) t
+    WHERE row_number <= 5
+    ORDER BY
+      CASE
+        WHEN LOWER(artist_name) = LOWER($2) THEN 0
+        ELSE 1
+      END, ref_count DESC
+  `;
   const results = await db.query(artistQuery, [`%${searchValue}%`, searchValue])
   return { type: 'artist', results };;
 }
 
 const searchAlbums = async (searchValue: string) => {
-  // searchValue = searchValue.toLowerCase();
-  const albumQuery = `SELECT musicbrainz.release.name, musicbrainz.artist_credit.name, musicbrainz.release.gid FROM musicbrainz.release
-    JOIN musicbrainz.artist_credit ON musicbrainz.artist_credit.id = musicbrainz.release.artist_credit
-    WHERE musicbrainz.artist_credit.name ILIKE $1
+  searchValue = searchValue.toLowerCase();
+  const albumQuery = `SELECT musicbrainz.release_group.name, musicbrainz.artist_credit.name, musicbrainz.releaserelease_group.gid FROM musicbrainz.release_group
+    JOIN musicbrainz.artist_credit ON musicbrainz.artist_credit.id = musicbrainz.release_group.artist_credit
+    WHERE musicbrainz.release_group.name ILIKE $1
     ORDER BY
       CASE
-        WHEN LOWER(musicbrainz.release.name) = LOWER($2) THEN 0
+        WHEN LOWER(musicbrainz.release_group.name) = LOWER($2) THEN 0
         ELSE 1
       END,
-      musicbrainz.release.name`
+      musicbrainz.release_group.name
+      LIMIT 12`
   const results = await db.query(albumQuery, [`%${searchValue}%`, searchValue])
   return { type: 'album', results };
 }

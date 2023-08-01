@@ -37,6 +37,7 @@ const Navbar = () => {
           <Link to="/community" className="">Community</Link>
           <span className="block h-custom bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-150"/>
         </div>
+        <div className="bg-neutral-800 w-8 h-8 rounded-full"></div>
       </div>
     </div>
   )

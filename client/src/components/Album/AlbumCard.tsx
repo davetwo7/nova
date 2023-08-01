@@ -9,8 +9,9 @@ const AlbumCard = ({ mbidplaceholdr }) => {
   const testMbid = 'c344b5e1-e6be-4155-86c8-c9bc650441ea';
 
   const fetchAlbumPhoto = async (mbid) => {
-    const photos = await axios.get(`https://coverartarchive.org/release/${mbid}`)
-    return photos.data.images[0].thumbnails[500]
+    return "https://ia601408.us.archive.org/6/items/mbid-6d50b672-4f8e-4b7a-917b-1ded22808632/mbid-6d50b672-4f8e-4b7a-917b-1ded22808632-33115391771_thumb500.jpg"
+    // const photos = await axios.get(`https://coverartarchive.org/release/${mbid}`)
+    // return photos.data.images[0].thumbnails[500]
   }
 
   useEffect(() => {
@@ -35,8 +36,8 @@ const AlbumCard = ({ mbidplaceholdr }) => {
             ></motion.img>
           </div>
           <div className="my-2 gap-4">
-            <div className="mb-1 hover:text-rose-400 transition-colors duration-100">Tyler, The Creator</div>
-            <div className="text-neutral-300 font-satoshi-regular mb-2 hover:text-rose-400 transition-colors duration-100">CALL ME IF YOU GET LOST</div>
+            <div className="mb-1 hover:text-rose-400 transition-colors duration-100">Steve Lacyn</div>
+            <div className="text-neutral-300 font-satoshi-regular mb-2 hover:text-rose-400 transition-colors duration-100">Gemini Rights</div>
             <div className="text-rose-50 text-sm flex justify-start items-center space-x-1">
               <span className="font-satoshi-black text-base text-neutral-50  bg-gradient-to-l from-rose-600/70 to-violet-600/70 rounded-md w-fit px-1.5">10</span>
               <span className="font-satoshi-light text-neutral-500 hover:text-neutral-200 transition-colors duration-100 text-xs">| rating, from 48 reviews</span>

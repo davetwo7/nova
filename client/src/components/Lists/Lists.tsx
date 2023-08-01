@@ -1,6 +1,9 @@
+import { ListCover } from "./ListCover";
 
 export default function Lists() {
   return (
-    <div>Lists</div>
+    <div>
+      <ListCover/>
+    </div>
   )
 }
