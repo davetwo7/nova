@@ -5,12 +5,12 @@ const Discover = () => {
   const [goToMap, setGoToMap] = useState(false)
   const [goToList, setGoToList] = useState(false)
 
-  if (goToMap) {
-    return <Navigate to="/discover/map"/>
-  }
-  if (goToList) {
-    return <Navigate to="/discover/list"/>
-  }
+  // if (goToMap) {
+  //   return <Navigate to="/discover/map"/>
+  // }
+  // if (goToList) {
+  //   return <Navigate to="/discover/list"/>
+  // }
 
   return (
     <div className="text-md font-bold flex gap-5 mx-2">

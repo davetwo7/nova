@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GenreDropdown from "./GenreDropdown";
 import GenreList from "./GenreList";
-const List = () => {
+const Genres = () => {
   const genres = useLoaderData();
   const [currentPage, setCurrentPage] = useState(1);
   const [viewAllGenres, setViewAllGenres] = useState(false);
@@ -35,4 +35,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Genres;

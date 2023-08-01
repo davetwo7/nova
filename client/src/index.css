@@ -2,6 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+
+html { background-color: rgb(23, 23, 23) }
+body {
+    min-height: 100vh;
+    margin: 0 auto;
+}
 /**
  * @license
  *

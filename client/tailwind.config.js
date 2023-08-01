@@ -22,6 +22,12 @@ export default {
       },
       textShadow: {
         'md': '2px 2px 4px rgba(0, 0, 0, 0.5)',
+      },
+      boxShadow: {
+        glow: '0 0 10px #f0f, 0 0 15px #f0f, 0 0 20px #f0f, 0 0 25px #f0f, 0 0 30px #f0f',
+      },
+      height: {
+        'custom': '.5px',
       }
     }
   },
