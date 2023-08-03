@@ -77,7 +77,7 @@ const GenreDropdown = () => {
                         key={index}
                       >
                         <Link
-                          className="mb-2 font-satoshi-light"
+                          className="mb-2 font-satoshi-light hover:text-rose-500 transition-colors duration-75"
                           to={genre.name}
                         >
                           {titleCase(genre.name)}

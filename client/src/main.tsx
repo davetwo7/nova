@@ -4,11 +4,11 @@ import Root from './components/Root';
 import './index.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider  } from 'react-router-dom';
 import Discover from './components/Discover/Discover';
-import Map from './components/Discover/Map';
+// import Map from './components/Discover/Map';
 import Community from './components/Community/Community';
 import Lists from './components/Lists/Lists';
 
-import { genreLoader } from './utils/GenreLoader';
+import { genreLoader } from './utils/Genre/GenreLoader';
 import Home from './components/Home';
 import GenreDetails from './components/Genres/GenreDetails';
 import Genres from './components/Genres/Genres';
@@ -21,7 +21,7 @@ const router = createBrowserRouter(
       <Route path="discover" loader={genreLoader} element={<Discover />}></Route>
       <Route path="genre" loader={genreLoader} element={<Genres />}></Route>
       <Route path="genre/:genre" loader={genreLoader} element={<GenreDetails />}></Route>
-      <Route path="album/:album" loader={genreLoader} element={<AlbumDetails/>}></Route>
+      <Route path="album/:mbid" loader={genreLoader} element={<AlbumDetails/>}></Route>
       {/* <Route path="discover/map" loader={genreLoader} element={<Map />}></Route> */}
       <Route path="list" loader={genreLoader} element={<Lists />}></Route>
       <Route path="community" element={<Community />} />

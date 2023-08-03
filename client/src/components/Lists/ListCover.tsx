@@ -8,6 +8,8 @@ export const ListCover = () => {
   const testImg3 =
     "http://coverartarchive.org/release/97476051-08f6-4f53-a03b-47f022856cb8/11947298695-500.jpg";
 
+    const ph = 'https://coverartarchive.org/release-group/${testMbid}/front-500'
+
   return (
     <div>
       <LargeHeader title={"Popular Lists"}/>
@@ -19,7 +21,7 @@ export const ListCover = () => {
         </div>
         <button className="flex gap-5 bg-neutral-800 items-center p-8 rounded-md hover:bg-neutral-700/90 transition-colors duration-100">
           <div className="bg-neutral-200 rounded-full w-14 h-14"></div>
-          <div className="font-satoshi-regular text-2xl">When you feel like crying because the...</div>
+          <div className="font-satoshi-regular text-2xl">Drake albums ranked from worst to wors...</div>
         </button>
       </div>
     </div>

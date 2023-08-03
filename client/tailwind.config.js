@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
+  purge: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  mode: 'jit',
   theme: {
     extend: {
       fontFamily: {
@@ -21,15 +22,19 @@ export default {
         'satoshi-black-italic': ['Satoshi-BlackItalic', 'sans-serif'],
       },
       textShadow: {
-        'md': '2px 2px 4px rgba(0, 0, 0, 0.5)',
+        'md': '0px 0px 7px rgba(0, 0, 0, 0.3)',
       },
       boxShadow: {
         glow: '0 0 10px #f0f, 0 0 15px #f0f, 0 0 20px #f0f, 0 0 25px #f0f, 0 0 30px #f0f',
+        'custom-dark': '0 0 10px 5px rgba(0, 0, 0, 0.1)'
       },
       height: {
         'custom': '.5px',
-      }
+      },
+
     }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-textshadow')
+  ],
 }

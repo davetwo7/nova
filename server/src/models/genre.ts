@@ -1,4 +1,4 @@
-import db from  '../../database/db.js'
+import db from '../../database/db.js'
 
 export const getAllGenres = async () => {
   try {
@@ -29,12 +29,20 @@ export const getGenreArtists = () => {
 
 }
 
-export const getGenreAlbums = () => {
-  const genreQuery = `SELECT * FROM musicbrainz.release_group_tag
+export const getGenreAlbums = async (genreName: string) => {
+  const genreQuery = `SELECT musicbrainz.tag.name as Tag,
+  musicbrainz.release_group.name as Album,
+  musicbrainz.artist_credit.name as Artist,
+  musicbrainz.release_group.gid as mbid
+  FROM musicbrainz.release_group_tag
   JOIN musicbrainz.release_group ON musicbrainz.release_group.id = musicbrainz.release_group_tag.release_group
+  JOIN musicbrainz.artist_credit ON musicbrainz.release_group.artist_credit = musicbrainz.artist_credit.id
   JOIN musicbrainz.tag ON musicbrainz.tag.id = musicbrainz.release_group_tag.tag
+  WHERE musicbrainz.tag.name = $1
   ORDER BY release_group ASC, tag ASC LIMIT 100`
 
+  const result = await db.query(genreQuery, [genreName])
+  return result;
 }
 
 export const getGenreTracks = () => {
