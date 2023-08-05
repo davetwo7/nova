@@ -17,27 +17,21 @@ An application designed to connect music lovers from around the world.
 
 ## Setup and Installation 🛠
 
-1. **Clone the repository**:
-    ```bash
-    git clone [repository_link]
-    cd [repository_directory]
-    ```
-
-2. **Install dependencies**:
+1. **Install dependencies**:
     ```bash
     npm install
     ```
 
-3. **Set up the database**:
+2. **Set up the database**:
    - Make sure you have PostgreSQL installed.
    - Set up your database and note down the connection details.
    - Use the provided SQL scripts to initialize the database tables.
 
-4. **Configure environment variables**:
+3. **Configure environment variables**:
    - Rename the `.env.example` file to `.env`.
    - Fill in the required environment variables.
 
-5. **Run the app**:
+4. **Run the app**:
     ```bash
     cd client/
     npm run start
