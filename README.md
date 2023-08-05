@@ -1,6 +1,9 @@
 # nova
 An application designed to connect music lovers from around the world.
 
+![image](https://github.com/davetwo7/nova/assets/123185389/077f9df0-cc10-4a07-903c-b1e4c8f28e2b)
+
+
 ## Features
 - **User Authentication**: Secure sign-up and login features.
 - **Music Discovery**: Browse and discover music across various genres.
