@@ -47,6 +47,6 @@ An application designed to connect music lovers from around the world.
 
 We welcome contributions! If you find a bug or have a feature request, please open an issue. If you want to contribute to the codebase, open a pull request.
 
-## License 📜
+## License
 
 MIT License.
