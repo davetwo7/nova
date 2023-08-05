@@ -1,7 +1,7 @@
 # nova
 An application designed to connect music lovers from around the world.
 
-## Features 🎉
+## Features
 - **User Authentication**: Secure sign-up and login features.
 - **Music Discovery**: Browse and discover music across various genres.
 - **Album Likes**: Users can 'like' and 'unlike' albums, giving them a way to express their musical tastes.
