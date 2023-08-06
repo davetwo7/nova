@@ -1,4 +1,4 @@
-import db from  '../../database/db.js'
+import db from '../../database/db.js'
 
 const searchArtists = async (searchValue: string) => {
   const artistQuery = `
@@ -23,7 +23,7 @@ const searchArtists = async (searchValue: string) => {
       CASE
         WHEN LOWER(artist_name) = LOWER($2) THEN 0
         ELSE 1
-      END, ref_count DESC
+      END, ref_count DESC LIMIT 12
   `;
   const results = await db.query(artistQuery, [`%${searchValue}%`, searchValue])
   return { type: 'artist', results };;
@@ -31,7 +31,7 @@ const searchArtists = async (searchValue: string) => {
 
 const searchAlbums = async (searchValue: string) => {
   searchValue = searchValue.toLowerCase();
-  const albumQuery = `SELECT musicbrainz.release_group.name, musicbrainz.artist_credit.name, musicbrainz.releaserelease_group.gid FROM musicbrainz.release_group
+  const albumQuery = `SELECT musicbrainz.release_group.name AS release_group_name, musicbrainz.artist_credit.name AS artist_credit_name, musicbrainz.release_group.gid FROM musicbrainz.release_group
     JOIN musicbrainz.artist_credit ON musicbrainz.artist_credit.id = musicbrainz.release_group.artist_credit
     WHERE musicbrainz.release_group.name ILIKE $1
     ORDER BY
@@ -54,6 +54,7 @@ const searchGenres = async (searchValue: string) => {
 export const searchDB = async (searchValue: string, searchType: string | undefined) => {
   try {
     const promises = [];
+    console.log('this is the search type: ', searchType)
 
     if (!searchType || searchType === 'artist') {
       promises.push(searchArtists(searchValue));
@@ -67,7 +68,7 @@ export const searchDB = async (searchValue: string, searchType: string | undefin
 
     const results = await Promise.all(promises);
 
-    const response = results.reduce((accum: {[key: string]: any}, {type, results}) => {
+    const response = results.reduce((accum: { [key: string]: any }, { type, results }) => {
       accum[type] = results;
       return accum;
     }, {});

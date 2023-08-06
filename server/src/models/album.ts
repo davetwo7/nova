@@ -2,23 +2,38 @@
 import db from '../../database/db.js'
 
 const albumDetailsQuery = `SELECT DISTINCT ON (t.position, t.name)
-    t.position as track_number,
-    t.name as track_name,
-    ac.name as artist_name
+t.position as track_number,
+t.name as track_name,
+ac.name as artist_name,
+rg.name as album_name,
+art.name as album_artist,
+url.url as url,
+lt.name as link_type
 FROM
-    musicbrainz.track t
+musicbrainz.track t
 JOIN
-    musicbrainz.medium m ON t.medium = m.id
+musicbrainz.medium m ON t.medium = m.id
 JOIN
-    musicbrainz.release r ON m.release = r.id
+musicbrainz.release r ON m.release = r.id
 JOIN
-    musicbrainz.release_group rg ON r.release_group = rg.id
+musicbrainz.release_group rg ON r.release_group = rg.id
 JOIN
-    musicbrainz.artist_credit ac ON t.artist_credit = ac.id
+musicbrainz.artist_credit ac ON t.artist_credit = ac.id
+JOIN
+musicbrainz.artist_credit art ON rg.artist_credit = art.id
+LEFT JOIN
+musicbrainz.l_release_url lru ON r.id = lru.entity0
+LEFT JOIN
+musicbrainz.url ON lru.entity1 = url.id
+LEFT JOIN
+musicbrainz.link ON lru.link = link.id
+LEFT JOIN
+musicbrainz.link_type lt ON link.link_type = lt.id
 WHERE
-    rg.gid = $1
+rg.gid = $1
 ORDER BY
-    t.position`
+t.position
+`
 
 const other_information = `SELECT
 rg.name AS album_name,

@@ -8,18 +8,24 @@ import { useState, useRef } from "react";
 import { extractColors } from "extract-colors";
 import { fetchAlbumData } from "../../utils/Album/fetchAlbumData";
 import AlbumDetailsHeader from "./AlbumDetailsHeader";
+import TrackList from "./TrackList";
 
 const AlbumDetails = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [bgColor, setBgColor] = useState("");
   const [toggleLike, setToggleLike] = useState(false);
+  const [albumData, setAlbumData] = useState([])
   const { mbid } = useParams();
   const imgRef = useRef(null);
 
   useEffect(() => {
     console.log("this is the mbid for the params: ", mbid);
-    const test = fetchAlbumData(mbid);
-    console.log(test)
+    const getAlbumData = async () => {
+      const data = await fetchAlbumData(mbid);
+      console.log('this is the data: ', data.data)
+      setAlbumData(data.data);
+    }
+    getAlbumData();
   }, [mbid]);
 
   const handleImageLoad = () => {
@@ -27,7 +33,7 @@ const AlbumDetails = () => {
     extractColors(imgRef.current.src, { crossOrigin: "Anonymous" })
       .then((colors) => {
         console.log("these are all the color: ", colors);
-        const dominantColor = colors[2].hex;
+        const dominantColor = colors[1].hex;
         console.log("this is the dominant color: ", dominantColor);
         setBgColor(dominantColor);
       })
@@ -38,6 +44,10 @@ const AlbumDetails = () => {
     console.log("love album");
     userLoveAlbum(mbid, toggleLike);
   };
+
+  if (albumData.length < 1) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="m-4 relative">
@@ -61,13 +71,13 @@ const AlbumDetails = () => {
         </div>
         <div className="flex flex-col gap-2">
           <div className="font-satoshi-light text-xl text-shadow-md ml-3">
-            Steve Lacy
+            {albumData[0].artist_name}
           </div>
           <div className="flex gap-5 items-end">
             <div className="font-satoshi-bold text-7xl text-shadow-md">
-              Gemini Rights
+              {albumData[0].album_name}
             </div>
-            <div className="font-satoshi-black text-neutral-50 text-3xl bg-gradient-to-l from-rose-600/70 to-violet-600/70 rounded-md w-fit h-fit px-1.5 mb-3">10</div>
+            <div className="font-satoshi-black text-shadow-xl text-neutral-50 text-3xl bg-gradient-to-l from-rose-600/70 to-violet-600/70 rounded-md w-fit h-fit px-1.5 mb-3">10</div>
           </div>
         </div>
         {/* <FontAwesomeIcon
@@ -76,8 +86,9 @@ const AlbumDetails = () => {
           onClick={handleLoveAlbum}
         /> */}
       </div>
-      <div className="track-list bg-neutral-700 rounded-b-lg">
-        <div>hello</div>
+      <div className="track-list bg-neutral-800 rounded-b-lg">
+        {mbid ? <TrackList tracks={albumData} mbid={mbid}/> : null}
+
       </div>
     </div>
   );

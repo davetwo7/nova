@@ -28,7 +28,7 @@ export default function GenreDetails() {
 
       {/* Section: Top-ranked Albums */}
       <BasicHeader title={`Top-ranked ${titleCase(genre)} Albums`} />
-      <div className="my-2 flex gap-10">
+      <div className="my-2 flex gap-10 py-4">
         <div className="w-48 h-48 bg-neutral-800 flex justify-center items-center text-3xl">
           AA
         </div>
@@ -41,7 +41,9 @@ export default function GenreDetails() {
         <div className="w-48 h-48 bg-neutral-800 flex justify-center items-center text-3xl">
           AA
         </div>
-        <AlbumCard />
+        <div className="w-48 h-48 bg-neutral-800 flex justify-center items-center text-3xl">
+          AA
+        </div>
       </div>
 
       {/* Section: Popular Artists */}
@@ -64,7 +66,41 @@ export default function GenreDetails() {
         </div>
       </div>
       <BasicHeader title={`Top-ranked ${titleCase(genre)} Albums`} />
+      <div className="my-8 flex gap-12">
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+      </div>
       <BasicHeader title={`Top-ranked ${titleCase(genre)} Albums`} />
+      <div className="my-8 flex gap-12">
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+        <div className="w-48 h-48 bg-neutral-800 rounded-full flex justify-center items-center text-3xl">
+          TR
+        </div>
+      </div>
     </>
   );
 }
