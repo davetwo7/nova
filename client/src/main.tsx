@@ -15,6 +15,7 @@ import GenreDetails from './components/Genres/GenreDetails';
 import Genres from './components/Genres/Genres';
 import AlbumDetails from './components/Album/AlbumDetails';
 import ReviewsList from './components/Review/ReviewsList';
+import Feed from './components/Feed/Feed';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route path="list" element={<Lists />}></Route>
       <Route path="reviews" element={<ReviewsList />}></Route>
       <Route path="community" element={<Community />} />
+      <Route path="feed" element={<Feed />} />
     </Route>
   )
 );

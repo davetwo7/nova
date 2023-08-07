@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import titleCase from "../../utils/TitleCase";
 import BasicHeader from "../BasicHeader";
-import AlbumCard from "../Album/AlbumCard";
 import { useEffect, useState } from "react";
 import { GenreAlbumsResponse, fetchGenreAlbums } from "../../utils/Genre/GenreAlbumLoader";
 

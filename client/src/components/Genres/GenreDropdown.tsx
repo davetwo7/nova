@@ -25,10 +25,6 @@ const GenreDropdown = () => {
     console.log(currentPage);
     setCurrentPage((currentPage) => currentPage - 1);
   };
-  useEffect(() => {
-    console.log(currentPage);
-    console.log(displayedGenres);
-  }, [displayedGenres]);
 
   return (
     <div>
@@ -41,7 +37,6 @@ const GenreDropdown = () => {
           <span className="hover:text-rose-50 transition-colors duration-75 cursor-pointer">
             {"  \u2192 view all genres"}
           </span>
-          {/* <span className="block h-0.5 bg-stone-900/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-150"/> */}
         </div>
       </div>
       <AnimatePresence>
@@ -77,10 +72,11 @@ const GenreDropdown = () => {
                         key={index}
                       >
                         <Link
-                          className="mb-2 font-satoshi-light hover:text-rose-500 transition-colors duration-75"
+                          className="group mb-2 font-satoshi-light hover:text-rose-400 transition-colors duration-75"
                           to={genre.name}
                         >
                           {titleCase(genre.name)}
+                          <span className="block h-custom bg-rose-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-150" />
                         </Link>
                         <span className="block h-0.5 bg-stone-900/75 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-150 absolute bottom-0 w-full" />
                       </button>

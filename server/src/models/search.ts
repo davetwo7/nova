@@ -51,23 +51,39 @@ const searchGenres = async (searchValue: string) => {
   return { type: 'genre', results };
 }
 
-export const searchDB = async (searchValue: string, searchType: string | undefined) => {
+type SearchFunction = (searchValue: string) => Promise<{ type: string; results: any[]; }>;
+
+export const searchDB = async (searchValue: string, searchType: string | null) => {
   try {
-    const promises = [];
+    const promises: Promise<{ type: string; results: any[]; }>[] = [];
+
+    const searches: Record<string, SearchFunction> = {
+      artist: searchArtists,
+      album: searchAlbums,
+      genre: searchGenres
+    }
+
     console.log('this is the search type: ', searchType)
 
-    if (!searchType || searchType === 'artist') {
-      promises.push(searchArtists(searchValue));
+    for (const search in searches) {
+      if (searchType === search) {
+        promises.push(searches[search](searchValue))
+      }
     }
-    if (!searchType || searchType === 'album') {
-      promises.push(searchAlbums(searchValue));
-    }
-    if (!searchType || searchType === 'genre') {
-      promises.push(searchGenres(searchValue));
-    }
+    // if (!searchType || searchType === 'artist') {
+    //   promises.push(searchArtists(searchValue));
+    // }
+    // if (!searchType || searchType === 'album') {
+    //   promises.push(searchAlbums(searchValue));
+    // }
+    // if (!searchType || searchType === 'genre') {
+    //   promises.push(searchGenres(searchValue));
+    // }
+
+
 
     const results = await Promise.all(promises);
-
+    console.log('these are the results: ', results)
     const response = results.reduce((accum: { [key: string]: any }, { type, results }) => {
       accum[type] = results;
       return accum;

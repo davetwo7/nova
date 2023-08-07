@@ -6,23 +6,17 @@ import AlbumCard from "../Album/AlbumCard";
 const Search = () => {
   const [searchParams] = useSearchParams();
   const searchValue = searchParams.get("searchValue");
-  let searchType = searchParams.get("searchType");
+  const searchType = searchParams.get("searchType");
 
   const [searchData, setSearchData] = useState([]);
   useEffect(() => {
-    let currentSearchType = searchType;
-
-    // If searchType is null (i.e., it didn't exist in the URL), set it to undefined
-    if (currentSearchType === null) {
-      currentSearchType = undefined;
-    }
-
-    // useEffect(() => {
-    //   // console.log('test', searchData.album)
-    // }, [searchData])
-    console.log(searchValue, currentSearchType);
+    // const currentSearchType = searchType;
+    // if (currentSearchType === null) {
+    //   currentSearchType = undefined;
+    // }
+    console.log(searchValue, searchType);
     const getSearchData = async () => {
-      const data = await searchDB(searchValue, currentSearchType);
+      const data = await searchDB(searchValue, searchType);
       console.log("this should be the data: ", data);
       setSearchData(data)
     };
@@ -62,7 +56,7 @@ const Search = () => {
       <p className="text-3xl font-satoshi-light py-5 text-neutral-300">{`Search Results for ${searchValue}`}</p>
       <LargeHeader title={"Albums"}/>
       <div className="mb-5 flex flex-row gap-10 flex-wrap">
-        {searchData.album.map(album => <AlbumCard mbid={album.gid} title={album.release_group_name} artist={album.artist_credit_name}/>)}
+        {searchData.album.map((album, index) => <AlbumCard key={index} mbid={album.gid} title={album.release_group_name} artist={album.artist_credit_name}/>)}
       </div>
       <LargeHeader title={"Artists"}/>
       <LargeHeader title={"Genres"}/>
