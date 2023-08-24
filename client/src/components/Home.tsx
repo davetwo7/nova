@@ -1,11 +1,21 @@
-import BasicHeader from "./BasicHeader";
 import { useLoaderData } from "react-router-dom";
 import AlbumCard from "./Album/AlbumCard";
 import LargeHeader from "./LargeHeader";
 import LoadingWheel from "./LoadingWheel";
 
+export interface AlbumCardProps {
+  album_id: string;
+  album_name: string;
+  artist_name: string;
+}
+
+interface FrontPageDataProps {
+  newest: AlbumCardProps[];
+  popular: AlbumCardProps[];
+}
+
 const Home = () => {
-  const FrontPageData = useLoaderData();
+  const FrontPageData = useLoaderData() as FrontPageDataProps;
 
   if (!FrontPageData) {
     return <LoadingWheel />;
@@ -14,17 +24,19 @@ const Home = () => {
   return (
     <div>
       <LargeHeader title={"Popular Now"} />
-      <div className="mb-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {FrontPageData.popular.map((release, index) => {
-          return (
-            <AlbumCard
-              key={index}
-              mbid={release.album_id}
-              title={release.album_name}
-              artist={release.artist_name}
-            />
-          );
-        })}
+      <div className="flex justify-between items-center">
+        <div className="mb-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {FrontPageData.popular.map((release, index) => {
+            return (
+              <AlbumCard
+                key={index}
+                album_id={release.album_id}
+                album_name={release.album_name}
+                artist_name={release.artist_name}
+              />
+            );
+          })}
+        </div>
       </div>
       <LargeHeader title={"New Releases"} />
       <div className="mb-5 flex flex-row gap-10 flex-wrap">
@@ -32,8 +44,8 @@ const Home = () => {
           return (
             <AlbumCard
               key={index}
-              mbid={release.gid}
-              title={release.release_group_name}
+              mbid={release.album_id}
+              title={release.album_name}
               artist={release.artist_name}
             />
           );

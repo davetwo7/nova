@@ -8,7 +8,6 @@ export const fetchAlbumDetails = async (req: Request, res: Response) => {
     res.status(200).send(response)
   } catch (error) {
     console.log(error)
-    // throw error;
     res.status(404).send('test')
   }
 }

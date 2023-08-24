@@ -1,7 +1,7 @@
 const newestReleasesQuery = `SELECT
 rg.id AS release_group_id,
-rg.gid,
-rg.name AS release_group_name,
+rg.gid AS album_id,
+rg.name AS album_name,
 ac.name AS artist_name
 FROM
 musicbrainz.release_group rg
